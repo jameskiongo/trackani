@@ -151,10 +151,13 @@ AUTHENTICATION_BACKENDS = (
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 )
+
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
     ),
+    "EXCEPTION_HANDLER": "drf_standardized_errors.handler.exception_handler",
 }
 REST_AUTH = {
     "USE_JWT": True,

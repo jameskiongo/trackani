@@ -1,6 +1,8 @@
 from django.urls import include, path
 
+from . import views
+
 urlpatterns = [
-    # path("", include("dj_rest_auth.urls")),
-    # path("registration/", include("dj_rest_auth.registration.urls")),
+    path("", views.AnimeApiView.as_view(), name="anime"),
+    path("<int:pk>/", views.EditAnimeApiView.as_view(), name="edit_anime"),
 ]
