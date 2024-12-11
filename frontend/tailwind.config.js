@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import preline from "preline/plugin";
-import tailwind_forms from "tailwindcss/forms";
+import tailwind_forms from "@tailwindcss/forms";
 export default {
   content: [
     "./index.html",
@@ -8,7 +8,11 @@ export default {
     "node_modules/preline/dist/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        galada: ["Galada", "serif"],
+      },
+    },
   },
   plugins: [preline, tailwind_forms],
 };
