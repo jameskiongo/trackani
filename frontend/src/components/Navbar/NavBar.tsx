@@ -2,7 +2,7 @@ import SearchBar from "./SearchBar";
 
 function NavBar() {
   return (
-    <div className="p-2 shadow-sm h-[65px] sticky top-0">
+    <div className="p-2 shadow-sm h-[65px] z-50 w-full fixed bg-white top-0">
       <header className="flex flex-wrap md:justify-center md:flex-nowrap z-50 w-full">
         <nav className="relative max-w-7xl w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center justify-center px-0 mx-auto">
           <div className="md:col-span-3  items-center">
@@ -75,7 +75,7 @@ function NavBar() {
           </div>
           <div
             id="hs-navbar-hcail"
-            className="hs-collapse hidden overflow-hidden bg-white border-none sm:border sm:border-gray-500 lg:p-0 p-4 transition-all duration-300 basis-full grow md:block md:w-auto md:basis-auto md:order-2 md:col-span-6"
+            className="hs-collapse hidden overflow-hidden bg-white border-none sm:border sm:border-gray-500 md:p-0 p-4 transition-all duration-300 basis-full grow md:block md:w-auto md:basis-auto md:order-2 md:col-span-6"
             aria-labelledby="hs-navbar-hcail-collapse"
           >
             <div className="flex flex-col gap-y-4 gap-x-0 z-50 md:flex-row md:justify-center md:items-center md:gap-y-0 md:gap-x-0 md:mt-0">

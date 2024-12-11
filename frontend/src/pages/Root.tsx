@@ -7,7 +7,7 @@ export default function Root() {
       <div className="">
         <NavBar />
       </div>
-      <div className="flex top-1">
+      <div className="flex">
         <div className="hidden lg:block w-[80px] shadow-md sticky overflow-hidden top-[65px] left-0 h-[calc(100vh-65px)]">
           <SideBar />
         </div>
