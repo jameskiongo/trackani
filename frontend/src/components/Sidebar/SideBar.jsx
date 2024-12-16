@@ -1,5 +1,6 @@
 function SideBar() {
   return (
+    // <div className="hidden lg:block w-[80px] shadow-md sticky overflow-hidden top-[65px] left-0 h-[calc(100vh-65px)]">
     <div className="flex bg-offwhite flex-col justify-center items-center h-full">
       <div className="w-full">
         <a href="">
@@ -14,7 +15,7 @@ function SideBar() {
                 d="m16 8.41l-4.5-4.5L4.41 11H6v8h3v-6h5v6h3v-8h1.59L17 9.41V6h-1zM2 12l9.5-9.5L15 6V5h3v4l3 3h-3v8h-5v-6h-3v6H5v-8z"
               />
             </svg>
-            <a href="#" className="text-sm">
+            <a href="/" className="text-sm">
               Home
             </a>
           </div>
@@ -51,9 +52,9 @@ function SideBar() {
               <g
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
                 color="currentColor"
               >
                 <path d="M20.5 13.5a8.5 8.5 0 1 1-17 0a8.5 8.5 0 0 1 17 0" />
@@ -87,6 +88,7 @@ function SideBar() {
         </a>
       </div>
     </div>
+    // {/* </div> */}
   );
 }
 

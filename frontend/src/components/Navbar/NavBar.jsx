@@ -8,7 +8,7 @@ function NavBar() {
           <div className="md:col-span-3  items-center">
             <a
               className=" text-center pt-2 uppercase tracking-widest rounded-xl text-3xl inline-block font-galada focus:outline-none focus:opacity-80"
-              href=""
+              href="/"
               aria-label="Preline"
             >
               Trackani
@@ -16,18 +16,20 @@ function NavBar() {
           </div>
 
           <div className="flex items-center gap-x-1 md:gap-x-2 ms-auto py-1 md:ps-6 md:order-3 md:col-span-3">
-            <button
+            <a
+              href="/login"
               type="button"
               className="border border-gray-500 rounded-md py-2 px-3 md:inline-block hidden text-sm text-black uppercase hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
             >
               Login
-            </button>
-            <button
+            </a>
+            <a
+              href="/register"
               type="button"
               className="border border-gray-500 rounded-md md:inline-block hidden py-2 px-3 text-sm uppercase text-black hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
             >
               Register
-            </button>
+            </a>
 
             <div className="md:hidden">
               <button
@@ -47,9 +49,9 @@ function NavBar() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <line x1="3" x2="21" y1="6" y2="6" />
                   <line x1="3" x2="21" y1="12" y2="12" />
@@ -63,9 +65,9 @@ function NavBar() {
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 >
                   <path d="M18 6 6 18" />
                   <path d="m6 6 12 12" />
