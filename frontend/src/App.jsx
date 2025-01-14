@@ -4,6 +4,7 @@ import {
   Route,
   createRoutesFromElements,
 } from "react-router-dom";
+import AuthProvider from "./services/helper/AuthProvider";
 import Root from "./pages/Root";
 import HomePage from "./pages/home/HomePage";
 import SearchPage from "./pages/search/SearchPage";
@@ -24,8 +25,10 @@ const router = createBrowserRouter(
 function App() {
   return (
     <>
-      <Toaster />
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <Toaster />
+        <RouterProvider router={router} />
+      </AuthProvider>
     </>
   );
 }

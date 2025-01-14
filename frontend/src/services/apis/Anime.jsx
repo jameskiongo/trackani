@@ -3,17 +3,17 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const animeApi = createApi({
   reducerPath: "animeApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "",
+    baseUrl: "https://api.jikan.moe/v4/",
   }),
   endpoints: (builder) => ({
-    getAnime: builder.query({
+    anime: builder.query({
       query: () => ({
-        url: "https://api.jikan.moe/v4/seasons/now",
+        url: "top/anime",
         method: "GET",
-        headers: { "Content-Type": "application/json" },
       }),
+      transformResponse: (response) => response.data,
     }),
   }),
 });
-export const { useGetAnimeQuery } = animeApi;
+export const { useAnimeQuery } = animeApi;
 export { animeApi };

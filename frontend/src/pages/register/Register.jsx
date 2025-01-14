@@ -1,8 +1,12 @@
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { useRegisterMutation } from "../../services";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 
 function Register() {
+  const navigate = useNavigate();
+  const [register, { isLoading }] = useRegisterMutation();
   const formik = useFormik({
     initialValues: {
       first_name: "",
@@ -24,7 +28,13 @@ function Register() {
       ),
     }),
     onSubmit: async (values) => {
-      alert(JSON.stringify(values, null, 2));
+      try {
+        await register(values).unwrap();
+        toast.success("Account created successfully. Please login");
+        navigate("/login");
+      } catch (error) {
+        toast.error(error.data.errors[0].detail);
+      }
     },
   });
   return (
@@ -170,7 +180,17 @@ function Register() {
                     type="submit"
                     className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                   >
-                    Login
+                    {isLoading ? (
+                      <div
+                        className="animate-spin inline-block size-5 border-[3px] border-current border-t-transparent text-white rounded-full"
+                        role="status"
+                        aria-label="loading"
+                      >
+                        <span className="sr-only">Loading...</span>
+                      </div>
+                    ) : (
+                      "Register"
+                    )}
                   </button>
                 </div>
               </form>

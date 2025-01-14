@@ -1,19 +1,42 @@
-import { useGetAnimeQuery } from "../../services";
 import ListTopAnime from "./ListTopAnime";
+import { useEffect, useState } from "react";
+import { FetchTopAiring } from "../../_apis/queries/FetchTopAiring";
 function TopAiringAnime() {
-  // const { response, error, isFetching } = useGetAnimeQuery();
-  // let content;
-  // if (isFetching) {
-  //   content = <div>Loading...</div>;
-  // } else if (error) {
-  //   content = <div>Error: {error}</div>;
-  // } else if (response && response.data) {
-  //   content = response.data.map((anime) => {
-  //     return <ListTopAnime key={anime.mal_id} anime={anime} />;
-  //   });
-  // } else {
-  //   content = <div>No data</div>;
-  // }
+  const [items, setItems] = useState({
+    data: [],
+    loading: true,
+    error: null,
+  });
+  useEffect(() => {
+    // Define an async function inside useEffect
+    const fetchData = async () => {
+      try {
+        const data = await FetchTopAiring();
+        setItems({
+          animeList: data.data, // Assuming the API response contains a `data` field
+          loading: false,
+        });
+      } catch (error) {
+        setItems({
+          animeList: [],
+          loading: false,
+          error: "An error occurred",
+        });
+      }
+    };
+
+    fetchData(); // Call the function
+  }, []);
+  let content;
+  if (items.loading) {
+    content = <p>Loading...</p>;
+  } else if (items.error) {
+    content = <p>{items.error}</p>;
+  } else {
+    content = items.animeList.map((anime) => {
+      return <ListTopAnime key={anime.id} anime={anime} />;
+    });
+  }
   return (
     <>
       <div className="p-4">
@@ -47,14 +70,30 @@ function TopAiringAnime() {
                 mask="url(#ipSRightC0)"
               />
             </svg>
-            <h1 className="uppercase font-bold px-1">Top Airing</h1>
+            <h1 className="uppercase font-bold px-1">Top Anime</h1>
           </div>
         </div>
-        <ListTopAnime />
-        <ListTopAnime />
-        <ListTopAnime />
-        <ListTopAnime />
-        <ListTopAnime />
+        {content}
+        <div className="flex flex-row items-center py-2">
+          <a
+            className="flex flex-row items-center capitalize font-bold"
+            href="#"
+          >
+            <p className="capitalize font-bold">View More</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="size-7"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill="currentColor"
+                fillRule="evenodd"
+                d="m10.207 8l-3.854 3.854l-.707-.707L8.793 8L5.646 4.854l.707-.708z"
+                clipRule="evenodd"
+              ></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </>
   );
