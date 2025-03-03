@@ -1,7 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { animeApi, useAnimeQuery } from "./apis/Anime";
 import { userApi, useLoginMutation, useRegisterMutation } from "./apis/Users";
+import {
+  animeApi,
+  useGetCurrentSeasonQuery,
+  useGetTopAiringQuery,
+} from "./apis/animeApi";
 
 export const store = configureStore({
   reducer: {
@@ -15,4 +19,9 @@ export const store = configureStore({
       .concat(animeApi.middleware),
 });
 setupListeners(store.dispatch);
-export { useAnimeQuery, useLoginMutation, useRegisterMutation };
+export {
+  useLoginMutation,
+  useRegisterMutation,
+  useGetCurrentSeasonQuery,
+  useGetTopAiringQuery,
+};

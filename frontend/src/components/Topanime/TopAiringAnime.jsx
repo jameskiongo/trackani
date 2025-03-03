@@ -1,39 +1,16 @@
 import ListTopAnime from "./ListTopAnime";
-import { useEffect, useState } from "react";
-import { FetchTopAiring } from "../../_apis/queries/FetchTopAiring";
+import { useGetTopAiringQuery } from "../../services";
 function TopAiringAnime() {
-  const [items, setItems] = useState({
-    data: [],
-    loading: true,
-    error: null,
-  });
-  useEffect(() => {
-    // Define an async function inside useEffect
-    const fetchData = async () => {
-      try {
-        const data = await FetchTopAiring();
-        setItems({
-          animeList: data.data, // Assuming the API response contains a `data` field
-          loading: false,
-        });
-      } catch (error) {
-        setItems({
-          animeList: [],
-          loading: false,
-          error: "An error occurred",
-        });
-      }
-    };
-
-    fetchData(); // Call the function
-  }, []);
+  const { data: items, isError, isLoading } = useGetTopAiringQuery();
   let content;
-  if (items.loading) {
+  if (isLoading) {
     content = <p>Loading...</p>;
-  } else if (items.error) {
+  } else if (isError) {
     content = <p>{items.error}</p>;
+  } else if (!items.data || items.data.length === 0) {
+    content = <p>No anime found.</p>;
   } else {
-    content = items.animeList.map((anime) => {
+    content = items.data.map((anime) => {
       return <ListTopAnime key={anime.mal_id} anime={anime} />;
     });
   }
@@ -74,7 +51,7 @@ function TopAiringAnime() {
           </div>
         </div>
         {content}
-        {items.loading ? null : (
+        {isLoading ? null : (
           <div className="flex flex-row items-center py-2">
             <a
               className="flex flex-row items-center capitalize font-bold"

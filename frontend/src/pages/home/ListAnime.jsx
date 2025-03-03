@@ -1,5 +1,20 @@
 import TitleDescription from "../../components/homepage/TitleDescription";
+import { useGetCurrentSeasonQuery } from "../../services";
 function ListAnime() {
+  const { data: items, isError, isLoading } = useGetCurrentSeasonQuery();
+  let content;
+
+  if (isLoading) {
+    content = <p>Loading...</p>;
+  } else if (isError) {
+    content = <p>{items.error}</p>;
+  } else if (!items.data || items.data.length === 0) {
+    content = <p>No anime found.</p>;
+  } else {
+    content = items.data.map((anime) => {
+      return <TitleDescription key={anime.mal_id} anime={anime} />;
+    });
+  }
   return (
     <div className="p-4 z-30">
       <div className="py-2">
@@ -36,9 +51,7 @@ function ListAnime() {
         </div>
       </div>
       <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 h-40">
-        <TitleDescription />
-        <TitleDescription />
-        <TitleDescription />
+        {content}
       </div>
     </div>
   );

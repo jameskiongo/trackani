@@ -28,7 +28,9 @@ function TitleDescription() {
           </div>
           <div className="flex justify-center h-4/6 items-center">
             <div className="flex flex-col">
-              <h1 className="text-2xl">Title</h1>
+              <h1 className="font-extrabold leading-5 py-2 text-sm">
+                Ore dake Level Up na Ken Season 2: Arise from the Shadow
+              </h1>
               <p className="text-sm text-ellipsis">
                 During their decade-long quest to defeat the Demon King, the
                 members of the hero's party—Himmel himself...
