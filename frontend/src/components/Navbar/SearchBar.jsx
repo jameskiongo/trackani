@@ -1,4 +1,11 @@
+import { useState } from "react";
 function SearchBar() {
+  const [term, setTerm] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(term);
+    // setTerm("");
+  };
   return (
     <>
       <div className="relative bg-offwhite lg:w-3/4">
@@ -19,11 +26,15 @@ function SearchBar() {
             <path d="m21 21-4.3-4.3"></path>
           </svg>
         </div>
-        <input
-          className="py-2 ps-10 pe-4 block w-full border-gray-500 placeholder-black rounded-lg text-sm focus:border-blue-500 focus:ring-blue-50 disabled:opacity-50 disabled:pointer-events-none "
-          type="text"
-          placeholder="Search Anime"
-        />
+        <form onSubmit={handleSubmit}>
+          <input
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+            className="py-2 ps-10 pe-4 block w-full border-gray-500 placeholder-black rounded-lg text-sm focus:border-blue-500 focus:ring-blue-50 disabled:opacity-50 disabled:pointer-events-none "
+            type="text"
+            placeholder="Search Anime"
+          />
+        </form>
       </div>
     </>
   );

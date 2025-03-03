@@ -5,8 +5,7 @@ function ListTopAnime({ anime }) {
         <div className="">
           <img
             src={anime.images.webp.image_url}
-            className="size-28 bg-cover "
-            // height="6rem"
+            className="size-28 bg-cover"
             alt=""
           />
         </div>

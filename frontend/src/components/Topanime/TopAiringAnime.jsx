@@ -34,7 +34,7 @@ function TopAiringAnime() {
     content = <p>{items.error}</p>;
   } else {
     content = items.animeList.map((anime) => {
-      return <ListTopAnime key={anime.id} anime={anime} />;
+      return <ListTopAnime key={anime.mal_id} anime={anime} />;
     });
   }
   return (
@@ -74,26 +74,28 @@ function TopAiringAnime() {
           </div>
         </div>
         {content}
-        <div className="flex flex-row items-center py-2">
-          <a
-            className="flex flex-row items-center capitalize font-bold"
-            href="#"
-          >
-            <p className="capitalize font-bold">View More</p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="size-7"
-              viewBox="0 0 16 16"
+        {items.loading ? null : (
+          <div className="flex flex-row items-center py-2">
+            <a
+              className="flex flex-row items-center capitalize font-bold"
+              href="#"
             >
-              <path
-                fill="currentColor"
-                fillRule="evenodd"
-                d="m10.207 8l-3.854 3.854l-.707-.707L8.793 8L5.646 4.854l.707-.708z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
-          </a>
-        </div>
+              <p className="capitalize font-bold">View More</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="size-7"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="currentColor"
+                  fillRule="evenodd"
+                  d="m10.207 8l-3.854 3.854l-.707-.707L8.793 8L5.646 4.854l.707-.708z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        )}
       </div>
     </>
   );
