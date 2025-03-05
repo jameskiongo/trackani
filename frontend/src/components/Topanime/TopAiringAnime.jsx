@@ -1,9 +1,26 @@
 import ListTopAnime from "./ListTopAnime";
 import { useGetTopAiringQuery } from "../../services";
+import { useState } from "react";
 function TopAiringAnime() {
-  const { data: items, isError, isLoading } = useGetTopAiringQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
+  const {
+    data: items,
+    isError,
+    isLoading,
+    isFetching,
+  } = useGetTopAiringQuery({
+    page: currentPage,
+    limit: itemsPerPage,
+  });
+  const handleNextPage = () => {
+    setCurrentPage((prev) => prev + 1);
+  };
+  const handlePreviousPage = () => {
+    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+  };
   let content;
-  if (isLoading) {
+  if (isLoading || isFetching) {
     content = <p>Loading...</p>;
   } else if (isError) {
     content = <p>{items.error}</p>;
@@ -51,27 +68,55 @@ function TopAiringAnime() {
           </div>
         </div>
         {content}
-        {isLoading ? null : (
-          <div className="flex flex-row items-center py-2">
-            <a
-              className="flex flex-row items-center capitalize font-bold"
-              href="#"
-            >
-              <p className="capitalize font-bold">View More</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="size-7"
-                viewBox="0 0 16 16"
+        {isLoading || isFetching ? null : (
+          <>
+            <nav className="flex flex-row justify-between items-center">
+              <button
+                className="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1 || isFetching}
               >
-                <path
-                  fill="currentColor"
-                  fillRule="evenodd"
-                  d="m10.207 8l-3.854 3.854l-.707-.707L8.793 8L5.646 4.854l.707-.708z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-            </a>
-          </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={20}
+                  height={20}
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    d="M7.222 9.897q3.45-3.461 6.744-6.754a.65.65 0 0 0 0-.896c-.311-.346-.803-.316-1.027-.08Q9.525 5.59 5.796 9.322q-.296.243-.296.574t.296.592l7.483 7.306a.75.75 0 0 0 1.044-.029c.358-.359.22-.713.058-.881a3408 3408 0 0 1-7.16-6.988"
+                  ></path>
+                </svg>
+              </button>
+              <button
+                type="button"
+                className="min-h-9.5 min-w-9.5 flex justify-center items-center text-gray-800 py-2 px-3 text-sm rounded-lg focus:outline-hidden cursor-default focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                aria-current="page"
+              >
+                Page {currentPage}
+              </button>
+
+              <button
+                className="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm rounded-lg text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                onClick={handleNextPage}
+                disabled={!items?.pagination?.has_next_page || isFetching}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width={20}
+                  height={20}
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    d="m7.053 2.158l7.243 7.256a.66.66 0 0 1 .204.483a.7.7 0 0 1-.204.497q-3.93 3.834-7.575 7.401c-.125.117-.625.408-1.011-.024c-.386-.433-.152-.81 0-.966l7.068-6.908l-6.747-6.759q-.369-.509.06-.939q.43-.43.962-.04"
+                  ></path>
+                </svg>
+              </button>
+            </nav>
+          </>
         )}
       </div>
     </>

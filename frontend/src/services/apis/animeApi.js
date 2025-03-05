@@ -5,10 +5,13 @@ export const animeApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.jikan.moe/v4/" }),
   endpoints: (builder) => ({
     getTopAiring: builder.query({
-      query: () => "top/anime?limit=5",
+      query: ({ page = 1, limit = 5 }) =>
+        `top/anime?limit=${limit}&page=${page}`,
     }),
     getCurrentSeason: builder.query({
-      query: () => "seasons/now",
+      // query: () => "seasons/now",
+      query: ({ page = 1, limit = 5 }) =>
+        `seasons/now?limit=${limit}&page=${page}`,
     }),
   }),
 });

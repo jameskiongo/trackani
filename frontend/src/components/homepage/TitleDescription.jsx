@@ -1,5 +1,3 @@
-import ExpandableText from "./ExpandableText";
-
 function TitleDescription({ anime }) {
   return (
     <>
@@ -30,15 +28,12 @@ function TitleDescription({ anime }) {
             </div>
           </div>
           <div className="flex justify-center h-4/6 items-center">
-            <div className="flex flex-col">
-              <h1 className="font-extrabold leading-5 py-2 text-sm">
+            <div className="flex flex-col overflow-hidden">
+              <h1 className="font-extrabold py-1 text-sm line-clamp-2 overflow-hidden">
                 {anime.title}
               </h1>
               <div className="">
-                <p className="text-sm line-clamp-4">
-                  {anime.synopsis}
-                  {/* <ExpandableText text={anime.synopsis} maxLength={50} /> */}
-                </p>
+                <p className="text-sm line-clamp-4">{anime.synopsis}</p>
               </div>
               <div className="w-full py-2">
                 <div className="flex flex-row gap-x-6 items-center w-full text-sm capitalize">
@@ -73,7 +68,7 @@ function TitleDescription({ anime }) {
               </div>
             </div>
           </div>
-          <div className="h-1/6 flex justify-start items-center">
+          <div className="h-1/6 flex flex-nowrap justify-start items-center">
             {anime.genres.map((genre) => (
               <button
                 type=""

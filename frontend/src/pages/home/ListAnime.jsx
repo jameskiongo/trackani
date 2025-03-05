@@ -1,13 +1,24 @@
+import { useState } from "react";
 import TitleDescription from "../../components/homepage/TitleDescription";
 import { useGetCurrentSeasonQuery } from "../../services";
 function ListAnime() {
-  const { data: items, isError, isLoading } = useGetCurrentSeasonQuery();
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+  const {
+    data: items,
+    isError,
+    isLoading,
+    isFetching,
+  } = useGetCurrentSeasonQuery({
+    page: currentPage,
+    limit: itemsPerPage,
+  });
   let content;
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     content = <p>Loading...</p>;
   } else if (isError) {
-    content = <p>{items.error}</p>;
+    content = <p>Something went wrong</p>;
   } else if (!items.data || items.data.length === 0) {
     content = <p>No anime found.</p>;
   } else {
