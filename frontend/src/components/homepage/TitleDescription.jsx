@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function TitleDescription({ anime }) {
   return (
     <>
@@ -29,9 +30,11 @@ function TitleDescription({ anime }) {
           </div>
           <div className="flex justify-center h-4/6 items-center">
             <div className="flex flex-col overflow-hidden">
-              <h1 className="font-extrabold py-1 text-sm line-clamp-2 overflow-hidden">
-                {anime.title}
-              </h1>
+              <Link to={`/anime/${anime.mal_id}`}>
+                <h1 className="font-extrabold py-1 text-sm line-clamp-2 overflow-hidden">
+                  {anime.title}
+                </h1>
+              </Link>
               <div className="">
                 <p className="text-sm line-clamp-4">{anime.synopsis}</p>
               </div>

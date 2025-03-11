@@ -11,6 +11,7 @@ import SearchPage from "./pages/search/SearchPage";
 import Login from "./pages/login/Login";
 import { Toaster } from "react-hot-toast";
 import Register from "./pages/register/Register";
+import AnimeDetails from "./pages/anime/AnimeDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,6 +20,7 @@ const router = createBrowserRouter(
       <Route path="/search" element={<SearchPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/anime/:mal_id" element={<AnimeDetails />} />
     </Route>,
   ),
 );

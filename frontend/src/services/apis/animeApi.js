@@ -8,6 +8,9 @@ export const animeApi = createApi({
       query: ({ page = 1, limit = 5 }) =>
         `top/anime?limit=${limit}&page=${page}`,
     }),
+    getAnimeDetails: builder.query({
+      query: (mal_id) => `anime/${mal_id}/full`,
+    }),
     getCurrentSeason: builder.query({
       // query: () => "seasons/now",
       query: ({ page = 1, limit = 5 }) =>
@@ -16,4 +19,8 @@ export const animeApi = createApi({
   }),
 });
 
-export const { useGetTopAiringQuery, useGetCurrentSeasonQuery } = animeApi;
+export const {
+  useGetTopAiringQuery,
+  useGetAnimeDetailsQuery,
+  useGetCurrentSeasonQuery,
+} = animeApi;

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function ListTopAnime({ anime }) {
   return (
     <>
@@ -11,9 +13,12 @@ function ListTopAnime({ anime }) {
         </div>
         <div className="w-full flex flex-col items-start justify-center gap-y-1 px-3 bg-[#e9ecef]">
           <div className="">
-            <h1 className="capitalize leading-tight tracking-normal text-sm font-semibold">
+            <Link
+              to={`/anime/${anime.mal_id}`}
+              className="capitalize leading-tight tracking-normal text-sm font-semibold"
+            >
               {anime.title}
-            </h1>
+            </Link>
           </div>
           <div className="flex flex-row justify-between items-center w-full">
             <div className="flex flex-row gap-x-2 items-center justify-start text-xs capitalize">
