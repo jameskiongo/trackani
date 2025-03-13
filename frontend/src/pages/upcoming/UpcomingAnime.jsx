@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TitleDescription from "../../components/homepage/TitleDescription";
-import { useGetTopAiringQuery } from "../../services";
-function TopAnime() {
+import { useGetUpcomingSeasonQuery } from "../../services";
+function UpcomingAnime() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 18;
   const {
@@ -9,7 +9,7 @@ function TopAnime() {
     isError,
     isLoading,
     isFetching,
-  } = useGetTopAiringQuery({
+  } = useGetUpcomingSeasonQuery({
     page: currentPage,
     limit: itemsPerPage,
   });
@@ -65,7 +65,7 @@ function TopAnime() {
               mask="url(#ipSRightC0)"
             />
           </svg>
-          <h1 className="uppercase font-bold px-1">Top Anime</h1>
+          <h1 className="uppercase font-bold px-1">next season</h1>
         </div>
         <div>
           <nav
@@ -132,4 +132,4 @@ function TopAnime() {
   );
 }
 
-export default TopAnime;
+export default UpcomingAnime;

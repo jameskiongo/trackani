@@ -24,7 +24,7 @@ function TopAiringAnime() {
   if (isLoading || isFetching) {
     content = <p>Loading...</p>;
   } else if (isError) {
-    content = <p>{items.error}</p>;
+    content = <p>Something went wrong</p>;
   } else if (!items.data || items.data.length === 0) {
     content = <p>No anime found.</p>;
   } else {

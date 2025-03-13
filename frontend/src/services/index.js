@@ -4,6 +4,7 @@ import { userApi, useLoginMutation, useRegisterMutation } from "./apis/Users";
 import {
   animeApi,
   useGetCurrentSeasonQuery,
+  useGetUpcomingSeasonQuery,
   useGetAnimeDetailsQuery,
   useGetTopAiringQuery,
 } from "./apis/animeApi";
@@ -26,4 +27,5 @@ export {
   useGetCurrentSeasonQuery,
   useGetTopAiringQuery,
   useGetAnimeDetailsQuery,
+  useGetUpcomingSeasonQuery,
 };

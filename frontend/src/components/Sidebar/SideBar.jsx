@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function SideBar() {
   return (
     // <div className="hidden lg:block w-[80px] shadow-md sticky overflow-hidden top-[65px] left-0 h-[calc(100vh-65px)]">
@@ -42,7 +44,7 @@ function SideBar() {
         </a>
       </div>
       <div className="w-full">
-        <a href="">
+        <Link to="/upcoming">
           <div className="flex flex-col py-2 bg-gray-200 hover:bg-gray-300 cursor-pointer w-full items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -61,12 +63,12 @@ function SideBar() {
                 <path d="M12 19a5.5 5.5 0 1 1 0-11m1.5-4.5a1.5 1.5 0 1 0-3 0a1.5 1.5 0 0 0 3 0m-1.5 10L15 9" />
               </g>
             </svg>
-            <a href="#" className="text-sm capitalize text-center">
+            <span className="text-sm capitalize text-center">
               {/* next up */}
               upcoming
-            </a>
+            </span>
           </div>
-        </a>
+        </Link>
       </div>
       <div className="w-full">
         <a href="">

@@ -16,6 +16,10 @@ export const animeApi = createApi({
       query: ({ page = 1, limit = 5 }) =>
         `seasons/now?limit=${limit}&page=${page}`,
     }),
+    getUpcomingSeason: builder.query({
+      query: ({ page = 1, limit = 5 }) =>
+        `seasons/upcoming?limit=${limit}&page=${page}`,
+    }),
   }),
 });
 
@@ -23,4 +27,5 @@ export const {
   useGetTopAiringQuery,
   useGetAnimeDetailsQuery,
   useGetCurrentSeasonQuery,
+  useGetUpcomingSeasonQuery,
 } = animeApi;

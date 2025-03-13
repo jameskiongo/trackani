@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import Register from "./pages/register/Register";
 import AnimeDetails from "./pages/anime/AnimeDetails";
 import TopAnime from "./pages/top/TopAnime";
+import UpcomingAnime from "./pages/upcoming/UpcomingAnime";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/top" element={<TopAnime />} />
+      <Route path="/upcoming" element={<UpcomingAnime />} />
       <Route path="/anime/:mal_id" element={<AnimeDetails />} />
     </Route>,
   ),
