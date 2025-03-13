@@ -5,7 +5,7 @@ function SideBar() {
     // <div className="hidden lg:block w-[80px] shadow-md sticky overflow-hidden top-[65px] left-0 h-[calc(100vh-65px)]">
     <div className="flex bg-offwhite flex-col justify-center items-center h-full">
       <div className="w-full">
-        <a href="">
+        <a href="/">
           <div className="flex flex-col py-2 bg-gray-200 hover:bg-gray-300 cursor-pointer w-full items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -17,9 +17,9 @@ function SideBar() {
                 d="m16 8.41l-4.5-4.5L4.41 11H6v8h3v-6h5v6h3v-8h1.59L17 9.41V6h-1zM2 12l9.5-9.5L15 6V5h3v4l3 3h-3v8h-5v-6h-3v6H5v-8z"
               />
             </svg>
-            <a href="/" className="text-sm">
+            <span href="/" className="text-sm">
               Home
-            </a>
+            </span>
           </div>
         </a>
       </div>

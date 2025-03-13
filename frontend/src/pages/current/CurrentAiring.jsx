@@ -1,10 +1,9 @@
 import { useState } from "react";
 import TitleDescription from "../../components/homepage/TitleDescription";
 import { useGetCurrentSeasonQuery } from "../../services";
-import { Link } from "react-router-dom";
-function ListAnime() {
+function CurrentAiring() {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+  const itemsPerPage = 18;
   const {
     data: items,
     isError,
@@ -66,9 +65,7 @@ function ListAnime() {
               mask="url(#ipSRightC0)"
             />
           </svg>
-          <Link to="/current">
-            <h1 className="uppercase font-bold px-1">Currently Airing</h1>
-          </Link>
+          <h1 className="uppercase font-bold px-1">Currently Airing</h1>
         </div>
         <div>
           <nav
@@ -128,11 +125,11 @@ function ListAnime() {
           </nav>
         </div>
       </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-4 h-40">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-40">
         {content}
       </div>
     </div>
   );
 }
 
-export default ListAnime;
+export default CurrentAiring;

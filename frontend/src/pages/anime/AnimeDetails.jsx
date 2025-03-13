@@ -4,11 +4,19 @@ import { useParams } from "react-router-dom";
 
 function AnimeDetails() {
   const { mal_id } = useParams();
-  const { data, isError, isLoading } = useGetAnimeDetailsQuery(mal_id);
+  const { data, isError, isLoading, isFetching } =
+    useGetAnimeDetailsQuery(mal_id);
+  if (isLoading || isFetching) {
+    return <p className="p-5">Loading...</p>;
+  }
+
+  if (isError) {
+    return (
+      <p className="text-center text-red-500 font-bold">Something went wrong</p>
+    );
+  }
   return (
     <div className="w-full">
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Something went wrong</p>}
       <div className="relative w-full h-80 ">
         <div className="absolute inset-0 bg-gradient-to-b from-white/0  to-white/100"></div>
         <img

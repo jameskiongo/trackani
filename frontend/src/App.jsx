@@ -14,6 +14,7 @@ import Register from "./pages/register/Register";
 import AnimeDetails from "./pages/anime/AnimeDetails";
 import TopAnime from "./pages/top/TopAnime";
 import UpcomingAnime from "./pages/upcoming/UpcomingAnime";
+import CurrentAiring from "./pages/current/CurrentAiring";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route path="/register" element={<Register />} />
       <Route path="/top" element={<TopAnime />} />
       <Route path="/upcoming" element={<UpcomingAnime />} />
+      <Route path="/current" element={<CurrentAiring />} />
       <Route path="/anime/:mal_id" element={<AnimeDetails />} />
     </Route>,
   ),

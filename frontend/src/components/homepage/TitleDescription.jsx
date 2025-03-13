@@ -6,7 +6,7 @@ function TitleDescription({ anime }) {
         <div className="w-2/5">
           <img
             src={anime.images.webp.large_image_url}
-            className="bg-cover h-72"
+            className="bg-cover object-cover h-72"
             alt=""
           />
         </div>
