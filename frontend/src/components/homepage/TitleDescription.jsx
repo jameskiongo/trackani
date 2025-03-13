@@ -73,13 +73,15 @@ function TitleDescription({ anime }) {
           </div>
           <div className="h-1/6 flex flex-nowrap justify-start items-center">
             {anime.genres.map((genre) => (
-              <button
-                type=""
-                key={genre.mal_id}
-                className="button cursor-default py-3 px-2 inline-flex items-center gap-x-2 text-xs capitalize font-medium"
-              >
-                {genre.name}
-              </button>
+              <>
+                <span
+                  type=""
+                  key={genre.mal_id}
+                  className="button cursor-default py-3 px-1 inline-flex items-center text-xs capitalize font-medium"
+                >
+                  {genre.name}
+                </span>
+              </>
             ))}
           </div>
         </div>

@@ -148,26 +148,26 @@ function AnimeDetails() {
                   type="button"
                   className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg bg-[#D9EAFD] text-sm font-medium focus:z-10 border border-gray-300  text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  {data?.data?.type}
+                  {data?.data?.type || "N/A"}
                 </button>
                 <button
                   type="button"
                   className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm bg-[#D9EAFD] font-medium focus:z-10 border border-gray-300 text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  {data?.data?.episodes} Ep
+                  {data?.data?.episodes || "N/A"} Ep
                 </button>
 
                 <button
                   type="button"
                   className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium bg-[#D9EAFD] focus:z-10 border border-gray-300 text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  {data?.data?.year}
+                  {data?.data?.year || "N/A"}
                 </button>
                 <button
                   type="button"
                   className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium bg-[#D9EAFD] focus:z-10 border border-gray-300 text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
                 >
-                  {data?.data?.score}
+                  {data?.data?.score || "N/A"}
                 </button>
               </div>
             </div>
