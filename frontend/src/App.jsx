@@ -26,6 +26,7 @@ const router = createBrowserRouter(
       <Route path="/top" element={<TopAnime />} />
       <Route path="/upcoming" element={<UpcomingAnime />} />
       <Route path="/current" element={<CurrentAiring />} />
+      <Route path="/search" element={<SearchPage />} />
       <Route path="/anime/:mal_id" element={<AnimeDetails />} />
     </Route>,
   ),
