@@ -1,10 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useGetSearchAnimeQuery } from "../../services";
 import SearchResults from "../search/SearchResults";
 function SearchBar() {
   //BUG:The Searchbar component does not dissapear after selecting an item, or clicking outside the search bar
   const [term, setTerm] = useState("");
+  const navigate = useNavigate();
   const debouncedQuery = useDebounce(term, 500); // Wait 500ms before fetching
   const [visible, setVisible] = useState(false);
   const itemsPerPage = 4;
@@ -19,6 +21,10 @@ function SearchBar() {
   );
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (term.length === 0) {
+      return;
+    }
+    navigate(`/search?q=${term}`);
     setTerm("");
   };
   return (

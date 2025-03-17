@@ -21,7 +21,10 @@ export const animeApi = createApi({
         `seasons/upcoming?limit=${limit}&page=${page}`,
     }),
     getSearchAnime: builder.query({
-      query: ({ limit = 5, term }) => `anime?q=${term}&limit=${limit}`,
+      query: ({ term }) => `anime?q=${term}`,
+    }),
+    getAllGenresAnime: builder.query({
+      query: () => `genres/anime`,
     }),
   }),
 });
@@ -32,4 +35,5 @@ export const {
   useGetCurrentSeasonQuery,
   useGetUpcomingSeasonQuery,
   useGetSearchAnimeQuery,
+  useGetAllGenresAnimeQuery,
 } = animeApi;

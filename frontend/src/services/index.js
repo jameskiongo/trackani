@@ -8,6 +8,7 @@ import {
   useGetUpcomingSeasonQuery,
   useGetAnimeDetailsQuery,
   useGetTopAiringQuery,
+  useGetAllGenresAnimeQuery,
 } from "./apis/animeApi";
 
 export const store = configureStore({
@@ -30,4 +31,5 @@ export {
   useGetAnimeDetailsQuery,
   useGetUpcomingSeasonQuery,
   useGetSearchAnimeQuery,
+  useGetAllGenresAnimeQuery,
 };

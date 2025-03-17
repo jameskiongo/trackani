@@ -84,7 +84,7 @@ function SideBar() {
               />
             </svg>
             <a href="#" className="text-sm text-center capitalize">
-              tags
+              genres
             </a>
           </div>
         </a>
