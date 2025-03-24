@@ -26,6 +26,17 @@ export const animeApi = createApi({
     getAllGenresAnime: builder.query({
       query: () => `genres/anime`,
     }),
+    getFilteredAnime: builder.query({
+      query: (filters) => {
+        const params = new URLSearchParams();
+        if (filters.genres) params.append("genres", filters.genres.join(",")); // Genres is an array
+        if (filters.status) params.append("status", filters.status); // Status is a single value
+        if (filters.type) params.append("type", filters.type); // Type is a single value
+        if (filters.rating) params.append("rating", filters.rating); // Rating is a single value
+
+        return `anime?${params.toString()}`;
+      },
+    }),
   }),
 });
 
@@ -36,4 +47,5 @@ export const {
   useGetUpcomingSeasonQuery,
   useGetSearchAnimeQuery,
   useGetAllGenresAnimeQuery,
+  useGetFilteredAnimeQuery,
 } = animeApi;

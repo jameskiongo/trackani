@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { userApi, useLoginMutation, useRegisterMutation } from "./apis/Users";
 import {
+  useGetFilteredAnimeQuery,
   useGetSearchAnimeQuery,
   animeApi,
   useGetCurrentSeasonQuery,
@@ -32,4 +33,5 @@ export {
   useGetUpcomingSeasonQuery,
   useGetSearchAnimeQuery,
   useGetAllGenresAnimeQuery,
+  useGetFilteredAnimeQuery,
 };
