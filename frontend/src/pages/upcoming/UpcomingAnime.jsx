@@ -65,7 +65,7 @@ function UpcomingAnime() {
               mask="url(#ipSRightC0)"
             />
           </svg>
-          <h1 className="uppercase font-bold px-1">next season</h1>
+          <h1 className="uppercase font-bold px-1">Upcoming Anime</h1>
         </div>
         <div>
           <nav

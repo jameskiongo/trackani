@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useLoginMutation } from "../../services";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../services/helper/AuthProvider";
+import { useAuth } from "../utils/AuthProvider";
 import * as Yup from "yup";
 import toast from "react-hot-toast";
 

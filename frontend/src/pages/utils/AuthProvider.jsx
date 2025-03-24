@@ -5,8 +5,11 @@ const AuthProvider = ({ children }) => {
   const handleLogin = () => {
     setAuthenticated(true);
   };
+  const logout = () => {
+    setAuthenticated(false);
+  };
   return (
-    <AuthContext.Provider value={{ handleLogin, authenticated }}>
+    <AuthContext.Provider value={{ handleLogin, authenticated, logout }}>
       {children}
     </AuthContext.Provider>
   );

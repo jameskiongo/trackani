@@ -3,8 +3,9 @@ import {
   RouterProvider,
   Route,
   createRoutesFromElements,
+  Navigate,
 } from "react-router-dom";
-import AuthProvider from "./services/helper/AuthProvider";
+import AuthProvider from "./pages/utils/AuthProvider";
 import Root from "./pages/Root";
 import HomePage from "./pages/home/HomePage";
 import SearchPage from "./pages/search/SearchPage";
@@ -16,6 +17,8 @@ import TopAnime from "./pages/top/TopAnime";
 import UpcomingAnime from "./pages/upcoming/UpcomingAnime";
 import CurrentAiring from "./pages/current/CurrentAiring";
 import GenresPage from "./pages/genres/GenresPage";
+import PrivateRoutes from "./pages/utils/ProtectedRoutes";
+import MyList from "./pages/mylist/MyList";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +33,11 @@ const router = createBrowserRouter(
       <Route path="/current" element={<CurrentAiring />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/anime/:mal_id" element={<AnimeDetails />} />
+      <Route path="/logout" element={<Navigate to="/login" replace />} />
+
+      <Route element={<PrivateRoutes />}>
+        <Route path="/list" element={<MyList />} />
+      </Route>
     </Route>,
   ),
 );
