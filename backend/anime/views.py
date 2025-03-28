@@ -20,6 +20,7 @@ class AnimeApiView(APIView):
         return Response(serializer.data)
 
     def post(self, request):
+
         serializer = AnimeSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()

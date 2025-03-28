@@ -1,39 +1,11 @@
 import { Link } from "react-router-dom";
-import { useBookmarkAnimeMutation } from "../../services";
-import toast from "react-hot-toast";
-import { useState } from "react";
-
-function TitleDescription({ anime }) {
-  const [addBookmark] = useBookmarkAnimeMutation();
-  const [isBookmarked, setIsBookmarked] = useState(anime.isBookmarked || false);
-  const newState = !isBookmarked;
-
-  const handleBookmark = async () => {
-    try {
-      const data = {
-        mal_id: anime.mal_id,
-        title: anime.title,
-        anime_poster: anime.images.webp.large_image_url,
-        synopsis: anime.synopsis,
-        episodes: anime.episodes,
-        anime_score: anime.score,
-        type: anime.type,
-        isBookmarked: true,
-      };
-      const result = await addBookmark(data);
-
-      setIsBookmarked(!isBookmarked);
-      toast.success("Successfully bookmarked");
-    } catch (error) {
-      toast.error("Failed to bookmark anime");
-    }
-  };
+function MyListAnime({ anime }) {
   return (
     <>
       <div className="flex flex-row">
         <div className="w-2/5">
           <img
-            src={anime.images.webp.large_image_url}
+            src={anime.anime_poster}
             className="bg-cover object-cover h-72"
             alt=""
           />
@@ -41,7 +13,7 @@ function TitleDescription({ anime }) {
         <div className="bg-[#e9ecef] overflow-hidden p-4  w-3/5 h-72">
           <div className="h-1/6">
             <div className="flex justify-end">
-              <button onClick={handleBookmark} href="#">
+              <button href="#">
                 {/* bookmark button */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +21,7 @@ function TitleDescription({ anime }) {
                   viewBox="0 0 24 24"
                 >
                   <path
-                    fill={anime.isBookmarked ? "red" : "currentColor"}
+                    fill="currentColor"
                     d="M6 19.5V5.616q0-.691.463-1.153T7.616 4h8.769q.69 0 1.153.463T18 5.616V19.5l-6-2.577zm1-1.55l5-2.15l5 2.15V5.616q0-.231-.192-.424T16.384 5H7.616q-.231 0-.424.192T7 5.616zM7 5h10z"
                   />
                 </svg>
@@ -79,7 +51,7 @@ function TitleDescription({ anime }) {
                         d="m8.85 16.825l3.15-1.9l3.15 1.925l-.825-3.6l2.775-2.4l-3.65-.325l-1.45-3.4l-1.45 3.375l-3.65.325l2.775 2.425zm-1.525 2.098l1.24-5.313l-4.123-3.572l5.431-.47L12 4.557l2.127 5.01l5.43.47l-4.123 3.572l1.241 5.313L12 16.102zM12 12.25"
                       />
                     </svg>
-                    {anime.score || "N/A"}
+                    {anime.anime_score || "N/A"}
                   </div>
                   <div className="flex flex-row items-center">
                     <svg
@@ -99,23 +71,23 @@ function TitleDescription({ anime }) {
               </div>
             </div>
           </div>
-          <div className="h-1/6 flex flex-nowrap justify-start items-center">
-            {anime.genres.map((genre) => (
-              <>
-                <span
-                  type=""
-                  key={genre.mal_id}
-                  className="button cursor-default py-3 px-1 inline-flex items-center text-xs capitalize font-medium"
-                >
-                  {genre.name}
-                </span>
-              </>
-            ))}
-          </div>
+          {/* <div className="h-1/6 flex flex-nowrap justify-start items-center"> */}
+          {/*   {anime.genres.map((genre) => ( */}
+          {/*     <> */}
+          {/*       <span */}
+          {/*         type="" */}
+          {/*         key={genre.mal_id} */}
+          {/*         className="button cursor-default py-3 px-1 inline-flex items-center text-xs capitalize font-medium" */}
+          {/*       > */}
+          {/*         {genre.name} */}
+          {/*       </span> */}
+          {/*     </> */}
+          {/*   ))} */}
+          {/* </div> */}
         </div>
       </div>
     </>
   );
 }
 
-export default TitleDescription;
+export default MyListAnime;

@@ -15,11 +15,17 @@ class AnimeSerializer(serializers.ModelSerializer):
             "watch_status",
             "synopsis",
             "anime_score",
-            "anime_id",
+            "mal_id",
+            "type",
             "anime_poster",
             "episodes",
             "created_at",
             "updated_at",
-            "airing_status",
+            "isBookmarked",
         ]
-        read_only_fields = ["id", "created_at", "updated_at"]
+        read_only_fields = ["id", "created_at", "updated_at", "isBookmarked"]
+
+    def create(self, validated_data):
+        # Automatically set isBookmarked to True when creating
+        validated_data["isBookmarked"] = True
+        return super().create(validated_data)

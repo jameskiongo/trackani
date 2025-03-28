@@ -17,13 +17,14 @@ class Anime(models.Model):
         max_length=20, choices=WATCH_STATUS, default="maybe watching"
     )
     synopsis = models.TextField()
-    anime_score = models.IntegerField()
-    anime_id = models.IntegerField(unique=True)
+    anime_score = models.CharField(max_length=100)
+    type = models.CharField(max_length=20)
+    isBookmarked = models.BooleanField(default=False)
+    mal_id = models.IntegerField(unique=True)
     anime_poster = models.CharField(max_length=100)
     episodes = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    airing_status = models.CharField(max_length=20)
 
     def __str__(self):
         return self.title
