@@ -1,4 +1,9 @@
 import { useState } from "react";
+import {
+  MdArrowCircleRight,
+  MdKeyboardArrowLeft,
+  MdKeyboardArrowRight,
+} from "react-icons/md";
 import TitleDescription from "../../components/homepage/TitleDescription";
 import { useGetTopAiringQuery } from "../../services";
 function TopAnime() {
@@ -37,34 +42,8 @@ function TopAnime() {
     <div className="p-4 ">
       <div className="py-2 flex flex-row justify-between items-center">
         <div className="flex flex-row items-center justify-start">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="1em"
-            height="1em"
-            viewBox="0 0 48 48"
-          >
-            <defs>
-              <mask id="ipSRightC0">
-                <g fill="none" strokeLinejoin="round" strokeWidth="4">
-                  <path
-                    fill="#fff"
-                    stroke="#fff"
-                    d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4S4 12.954 4 24s8.954 20 20 20Z"
-                  />
-                  <path
-                    stroke="#000"
-                    strokeLinecap="round"
-                    d="m21 33l9-9l-9-9"
-                  />
-                </g>
-              </mask>
-            </defs>
-            <path
-              fill="currentColor"
-              d="M0 0h48v48H0z"
-              mask="url(#ipSRightC0)"
-            />
-          </svg>
+          <MdArrowCircleRight className="size-5" />
+
           <h1 className="uppercase font-bold px-1">Top Anime</h1>
         </div>
         <div>
@@ -79,20 +58,7 @@ function TopAnime() {
               aria-label="Previous"
               onClick={handlePreviousPage}
             >
-              <svg
-                className="shrink-0 size-3.5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m15 18-6-6 6-6"></path>
-              </svg>
+              <MdKeyboardArrowLeft className="size-4" />
             </button>
             <button
               type="button"
@@ -107,20 +73,7 @@ function TopAnime() {
               onClick={handleNextPage}
               disabled={!items?.pagination?.has_next_page || isFetching}
             >
-              <svg
-                className="shrink-0 size-3.5"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m9 18 6-6-6-6"></path>
-              </svg>
+              <MdKeyboardArrowRight className="size-4" />
             </button>
           </nav>
         </div>

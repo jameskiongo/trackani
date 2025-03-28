@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useGetSearchAnimeQuery } from "../../services";
 import SearchResults from "../search/SearchResults";
+import { CiSearch } from "react-icons/ci";
 function SearchBar() {
   //BUG:The Searchbar component does not dissapear after selecting an item, or clicking outside the search bar
   const [term, setTerm] = useState("");
@@ -32,21 +33,7 @@ function SearchBar() {
       <div className="flex flex-col lg:w-full">
         <div className="relative bg-offwhite lg:w-10/12">
           <div className="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-3.5">
-            <svg
-              className="shrink-0 size-4 text-black "
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="11" cy="11" r="8"></circle>
-              <path d="m21 21-4.3-4.3"></path>
-            </svg>
+            <CiSearch className="size-4 " />
           </div>
           <form onSubmit={handleSubmit}>
             <input

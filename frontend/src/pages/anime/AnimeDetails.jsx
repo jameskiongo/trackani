@@ -1,3 +1,5 @@
+import { CiBookmark } from "react-icons/ci";
+import { SiMyanimelist } from "react-icons/si";
 import YouTubeEmbed from "../../components/animedetails/YoutubePlayer";
 import { useGetAnimeDetailsQuery } from "../../services";
 import { useParams } from "react-router-dom";
@@ -36,60 +38,19 @@ function AnimeDetails() {
             />
           </div>
           <div className="px-6 py-4">
-            <div className="pb-3">
+            <div className="flex flex-row gap-2">
               <button
                 type="button"
                 className="w-full py-3 gap-x-2 px-4 flex justify-center items-center size-11 text-sm font-medium rounded-lg border border-gray-300 bg-[#D9EAFD] text-white hover:bg-gray-50 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
-                <span className="text-black text-lg capitalize">
-                  Add to list
-                </span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="size-7"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#000"
-                    d="M6 19.5V4h12v15.5l-6-2.583zm1-1.55l5-2.15l5 2.15V5H7zM7 5h10z"
-                  ></path>
-                </svg>
+                <CiBookmark className="size-7" color="#000" />
               </button>
-            </div>
-            <div className="flex flex-row gap-2">
+
               <button
                 type="button"
                 className="w-full py-3 px-4 flex justify-center items-center size-11 text-sm font-medium rounded-lg border border-gray-300 bg-[#D9EAFD] text-white hover:bg-gray-50 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="size-9"
-                  viewBox="0 0 48 48"
-                >
-                  <path
-                    fill="#000"
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M34.179 31.029V14.793h4.152v12.533H43.5l-1.008 3.701zm-1.786-12.4H28.25c-1.446 0-2.927.85-3.86 3.493h3.85V18.9m4.153-.271v12.4h-4.152v-5.422h-4.703c.176 1.721.866 3.574 1.835 5.165l-3.31 2.435c-1.913-3.2-2.875-7.272-1.651-12.052c1.072-4.186 3.997-6.326 7.841-6.326h3.504l1.083 3.802h-.448M8.71 14.793H4.5V31.03h4.152v-9.207l3.115 4.254l3.114-4.254v9.207h4.152V14.793h-4.21l-3.056 4.175z"
-                    strokeWidth={1}
-                  ></path>
-                </svg>
-              </button>
-              <button
-                type="button"
-                className="w-full py-3 px-4 flex justify-center items-center size-11 text-sm font-medium rounded-lg border border-gray-300 bg-[#D9EAFD] text-white hover:bg-gray-50 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="size-9"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#000"
-                    d="M24 17.53v2.421c0 .71-.391 1.101-1.1 1.101h-5l-.057-.165L11.84 3.736c.106-.502.46-.788 1.053-.788h2.422c.71 0 1.1.391 1.1 1.1v12.38H22.9c.71 0 1.1.392 1.1 1.101zM11.034 2.947l6.337 18.104h-4.918l-1.052-3.131H6.019l-1.077 3.131H0L6.361 2.948h4.673zm-.66 10.96l-1.69-5.014l-1.541 5.015h3.23z"
-                  ></path>
-                </svg>
+                <SiMyanimelist className="size-7" color="#000" />
               </button>
             </div>
           </div>

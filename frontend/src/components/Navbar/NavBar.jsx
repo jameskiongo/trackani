@@ -1,6 +1,8 @@
 import SearchBar from "./SearchBar";
+import { HiBars3 } from "react-icons/hi2";
 import { useAuth } from "../../pages/utils/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { IoIosClose } from "react-icons/io";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -67,37 +69,8 @@ function NavBar() {
                 aria-label="Toggle navigation"
                 data-hs-collapse="#hs-navbar-hcail"
               >
-                <svg
-                  className="hs-collapse-open:hidden shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="3" x2="21" y1="6" y2="6" />
-                  <line x1="3" x2="21" y1="12" y2="12" />
-                  <line x1="3" x2="21" y1="18" y2="18" />
-                </svg>
-                <svg
-                  className="hs-collapse-open:block hidden shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 6 6 18" />
-                  <path d="m6 6 12 12" />
-                </svg>
+                <HiBars3 className="hs-collapse-open:hidden shrink-0 size-4" />
+                <IoIosClose className="hs-collapse-open:block hidden shrink-0 size-4" />
               </button>
             </div>
           </div>
