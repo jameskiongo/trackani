@@ -33,7 +33,7 @@ function Login() {
 		},
 	});
 	return (
-		<>
+		<div>
 			<div className="w-full flex items-center justify-center ">
 				<div className="mt-7  w-full max-w-xl bg-white">
 					<div className="p-4 sm:p-7">
@@ -59,7 +59,6 @@ function Login() {
 										<div className="relative">
 											<input
 												type="email"
-												id="email"
 												name="email"
 												required
 												className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
@@ -80,7 +79,6 @@ function Login() {
 										<div className="relative">
 											<input
 												type="password"
-												id="password"
 												name="password"
 												className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 												required
@@ -103,8 +101,8 @@ function Login() {
 										{isLoading ? (
 											<div
 												className="animate-spin inline-block size-5 border-[3px] border-current border-t-transparent text-white rounded-full"
-												role="status"
-												aria-label="loading"
+												// role="status"
+												// aria-label="loading"
 											>
 												<span className="sr-only">Loading...</span>
 											</div>
@@ -118,7 +116,7 @@ function Login() {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

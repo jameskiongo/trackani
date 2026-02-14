@@ -6,7 +6,6 @@ import { useGetSearchAnimeQuery } from "../../services";
 import SearchResults from "../search/SearchResults";
 
 function SearchBar() {
-	//BUG:The Searchbar component does not dissapear after selecting an item, or clicking outside the search bar
 	const [term, setTerm] = useState("");
 	const navigate = useNavigate();
 	const debouncedQuery = useDebounce(term, 500); // Wait 500ms before fetching

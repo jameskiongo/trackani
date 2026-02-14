@@ -1,11 +1,5 @@
 import { BsCcSquare } from "react-icons/bs";
 import { CiBookmark } from "react-icons/ci";
-import { IoIosStarOutline } from "react-icons/io";
-import { Link } from "react-router-dom";
-
-// import { useBookmarkAnimeMutation } from "../../services";
-// import toast from "react-hot-toast";
-// import { useState } from "react";
 
 function TitleDescription({ anime }) {
 	return (
@@ -23,7 +17,10 @@ function TitleDescription({ anime }) {
 			<div className="flex w-3/5 flex-col bg-gradient-to-br from-white to-gray-50/50 p-6">
 				{/* Bookmark */}
 				<div className="flex justify-end">
-					<button className="rounded-lg p-2 text-gray-400 transition-all hover:bg-gray-100 hover:text-blue-600">
+					<button
+						type="button"
+						className="rounded-lg p-2 text-gray-400 transition-all hover:bg-gray-100 hover:text-blue-600"
+					>
 						<CiBookmark className="size-6" />
 					</button>
 				</div>

@@ -15,7 +15,8 @@ class AnimeApiView(APIView):
     authentication_classes = [JWTAuthentication]
 
     def get(self, request):
-        anime = Anime.objects.filter(user=request.user)
+        # anime = Anime.objects.filter(user=request.user)
+        anime = get_object_or_404(Anime, user=request.user)
         serializer = AnimeSerializer(anime, many=True)
         return Response(serializer.data)
 
