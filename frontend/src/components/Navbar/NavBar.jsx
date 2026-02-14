@@ -16,34 +16,38 @@ function NavBar() {
 	};
 
 	return (
-		<div className="p-2 shadow-sm h-[65px] z-50 w-full fixed bg-offwhite top-0">
-			<header className="flex flex-wrap md:justify-center md:flex-nowrap z-50 w-full">
-				<nav className="relative max-w-7xl w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center justify-center px-0 mx-auto">
-					<div className="md:col-span-3 items-center">
+		<div className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 shadow-sm h-[65px]">
+			<header className="flex h-full items-center justify-center">
+				<nav className="relative mx-auto flex w-full max-w-7xl items-center justify-between px-4">
+					{/* Logo */}
+					<div className="flex items-center">
 						<a
-							className="text-center pt-2 uppercase tracking-widest rounded-xl text-3xl inline-block font-galada focus:outline-none focus:opacity-80"
 							href="/"
-							aria-label="Preline"
+							className="inline-block text-2xl md:text-3xl font-black uppercase tracking-widest text-gray-900 hover:text-blue-600 transition-colors font-galada"
+							aria-label="Trackani Home"
 						>
 							Trackani
 						</a>
 					</div>
 
-					<div className="flex items-center gap-x-1 md:gap-x-2 ms-auto py-1 md:ps-6 md:order-3 md:col-span-3">
-						{/* Show Login and Register if not authenticated, otherwise show Logout */}
+					{/* Search - Desktop */}
+					<div className="hidden md:block flex-1 max-w-md mx-auto px-4">
+						<SearchBar />
+					</div>
+
+					{/* Desktop Auth Buttons */}
+					<div className="hidden md:flex items-center gap-2">
 						{!authTokens ? (
 							<>
 								<a
 									href="/login"
-									type="button"
-									className="border border-gray-500 rounded-md py-2 px-3 md:inline-block hidden text-sm text-black uppercase hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
+									className="px-4 py-2 text-sm font-medium text-gray-700 uppercase rounded-lg border border-gray-300 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all"
 								>
 									Login
 								</a>
 								<a
 									href="/register"
-									type="button"
-									className="border border-gray-500 rounded-md md:inline-block hidden py-2 px-3 text-sm uppercase text-black hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
+									className="px-4 py-2 text-sm font-medium text-white uppercase rounded-lg bg-blue-600 hover:bg-blue-700 shadow-sm hover:shadow transition-all"
 								>
 									Register
 								</a>
@@ -51,68 +55,61 @@ function NavBar() {
 						) : (
 							<button
 								onClick={handleLogout}
-								type="button"
-								className="border border-gray-500 rounded-md py-2 px-3 md:inline-block hidden text-sm text-black uppercase hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
+								className="px-4 py-2 text-sm font-medium text-gray-700 uppercase rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-600 hover:bg-red-50 transition-all"
 							>
 								Logout
 							</button>
 						)}
-
-						{/* Mobile Menu Toggle Button */}
-						<div className="md:hidden">
-							<button
-								type="button"
-								className="hs-collapse-toggle size-[38px] flex justify-center items-center text-sm font-semibold rounded-xl border border-gray-200 text-black hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-								id="hs-navbar-hcail-collapse"
-								aria-expanded="false"
-								aria-controls="hs-navbar-hcail"
-								aria-label="Toggle navigation"
-								data-hs-collapse="#hs-navbar-hcail"
-							>
-								<HiBars3 className="hs-collapse-open:hidden shrink-0 size-4" />
-								<IoIosClose className="hs-collapse-open:block hidden shrink-0 size-4" />
-							</button>
-						</div>
 					</div>
 
-					{/* Mobile Menu Content */}
-					<div
-						id="hs-navbar-hcail"
-						className="hs-collapse hidden overflow-hidden w-full bg-offwhite border-none sm:border sm:border-gray-500 md:p-0 p-4 transition-all duration-300 basis-full grow md:block md:w-auto md:basis-auto md:order-2 md:col-span-6"
-						aria-labelledby="hs-navbar-hcail-collapse"
-					>
-						<div className="flex w-full flex-col gap-y-4 gap-x-0 z-50 md:flex-row md:justify-center md:items-center md:gap-y-0 md:gap-x-0 md:mt-0">
-							<SearchBar />
-						</div>
-						<div className="md:hidden flex py-3 gap-x-3 flex-row">
-							{/* Show Login and Register if not authenticated, otherwise show Logout */}
-							{!authTokens ? (
-								<>
-									<a
-										href="/login"
-										className="w-full border border-gray-500 rounded-md py-2 px-3 lg:hidden inline-block text-sm text-black uppercase hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
-									>
-										Login
-									</a>
-									<a
-										href="/register"
-										className="w-full border border-gray-500 rounded-md py-2 px-3 lg:hidden inline-block text-sm text-black uppercase hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
-									>
-										Register
-									</a>
-								</>
-							) : (
-								<button
-									onClick={handleLogout}
-									className="w-full border border-gray-500 rounded-md py-2 px-3 lg:hidden inline-block text-sm text-black uppercase hover:border-blue-600 hover:text-blue-600 focus:outline-none focus:border-blue-600 focus:text-blue-600"
-								>
-									Logout
-								</button>
-							)}
-						</div>
+					{/* Mobile Menu Button */}
+					<div className="md:hidden">
+						<button
+							type="button"
+							className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 transition-colors"
+							id="hs-navbar-hcail-collapse"
+							aria-label="Toggle navigation"
+						>
+							<HiBars3 className="size-5" />
+						</button>
 					</div>
 				</nav>
 			</header>
+
+			{/* Mobile Menu */}
+			<div
+				id="hs-navbar-hcail"
+				className="absolute left-0 right-0 top-[65px] bg-white border-b border-gray-200 shadow-lg p-4 md:hidden"
+			>
+				<div className="flex flex-col gap-4">
+					<SearchBar />
+					<div className="flex flex-col gap-2">
+						{!authTokens ? (
+							<>
+								<a
+									href="/login"
+									className="w-full px-4 py-2.5 text-sm font-medium text-gray-700 uppercase rounded-lg border border-gray-300 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 text-center transition-all"
+								>
+									Login
+								</a>
+								<a
+									href="/register"
+									className="w-full px-4 py-2.5 text-sm font-medium text-white uppercase rounded-lg bg-blue-600 hover:bg-blue-700 text-center transition-all"
+								>
+									Register
+								</a>
+							</>
+						) : (
+							<button
+								onClick={handleLogout}
+								className="w-full px-4 py-2.5 text-sm font-medium text-gray-700 uppercase rounded-lg border border-gray-300 hover:border-red-500 hover:text-red-600 hover:bg-red-50 text-center transition-all"
+							>
+								Logout
+							</button>
+						)}
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 }

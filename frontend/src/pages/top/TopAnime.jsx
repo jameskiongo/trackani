@@ -1,88 +1,98 @@
 import { useState } from "react";
 import {
-  MdArrowCircleRight,
-  MdKeyboardArrowLeft,
-  MdKeyboardArrowRight,
+	MdArrowCircleRight,
+	MdKeyboardArrowLeft,
+	MdKeyboardArrowRight,
 } from "react-icons/md";
 import TitleDescription from "../../components/homepage/TitleDescription";
 import { useGetTopAiringQuery } from "../../services";
+
 function TopAnime() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 18;
-  const {
-    data: items,
-    isError,
-    isLoading,
-    isFetching,
-  } = useGetTopAiringQuery({
-    page: currentPage,
-    limit: itemsPerPage,
-  });
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 18;
+	const {
+		data: items,
+		isError,
+		isLoading,
+		isFetching,
+	} = useGetTopAiringQuery({
+		page: currentPage,
+		limit: itemsPerPage,
+	});
 
-  const handleNextPage = () => {
-    setCurrentPage((prev) => prev + 1);
-  };
-  const handlePreviousPage = () => {
-    setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
-  };
-  let content;
+	const handleNextPage = () => {
+		setCurrentPage((prev) => prev + 1);
+	};
+	const handlePreviousPage = () => {
+		setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+	};
+	let content;
 
-  if (isLoading || isFetching) {
-    content = <p>Loading...</p>;
-  } else if (isError) {
-    content = <p>Something went wrong</p>;
-  } else if (!items.data || items.data.length === 0) {
-    content = <p>No anime found.</p>;
-  } else {
-    content = items.data.map((anime) => {
-      return <TitleDescription key={anime.mal_id} anime={anime} />;
-    });
-  }
-  return (
-    <div className="p-4 ">
-      <div className="py-2 flex flex-row justify-between items-center">
-        <div className="flex flex-row items-center justify-start">
-          <MdArrowCircleRight className="size-5" />
+	if (isLoading || isFetching) {
+		content = <p>Loading...</p>;
+	} else if (isError) {
+		content = <p>Something went wrong</p>;
+	} else if (!items.data || items.data.length === 0) {
+		content = <p>No anime found.</p>;
+	} else {
+		content = items.data.map((anime) => {
+			return <TitleDescription key={anime.mal_id} anime={anime} />;
+		});
+	}
+	return (
+		<div className="p-4 sm:p-6 bg-white">
+			{/* Header Section */}
+			<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-gray-200">
+				<div className="flex items-center gap-2">
+					<div className="p-2 rounded-lg bg-blue-50">
+						<MdArrowCircleRight className="size-5 text-blue-600" />
+					</div>
+					<h1 className="text-xl sm:text-2xl font-bold text-gray-900">
+						Top Anime
+					</h1>
+					{/* {items?.pagination?.items?.total > 0 && ( */}
+					{/* 	<span className="ml-2 px-2.5 py-0.5 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"> */}
+					{/* 		{items.pagination.items.total} */}
+					{/* 	</span> */}
+					{/* )} */}
+				</div>
 
-          <h1 className="uppercase font-bold px-1">Top Anime</h1>
-        </div>
-        <div>
-          <nav
-            className="flex items-center -space-x-px"
-            aria-label="Pagination"
-          >
-            <button
-              type="button"
-              disabled={currentPage === 1 || isFetching}
-              className="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm first:rounded-s-lg last:rounded-e-lg border border-gray-200 text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-              aria-label="Previous"
-              onClick={handlePreviousPage}
-            >
-              <MdKeyboardArrowLeft className="size-4" />
-            </button>
-            <button
-              type="button"
-              className="min-h-9.5 min-w-9.5 flex justify-center items-center cursor-default bg-[#e9ecef] border border-gray-200 text-gray-800 hover:bg-gray-100 py-2 px-3 text-sm first:rounded-s-lg last:rounded-e-lg focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-            >
-              {currentPage}
-            </button>
-            <button
-              type="button"
-              className="min-h-9.5 min-w-9.5 py-2 px-2.5 inline-flex justify-center items-center gap-x-1.5 text-sm first:rounded-s-lg last:rounded-e-lg border border-gray-200 text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-              aria-label="Next"
-              onClick={handleNextPage}
-              disabled={!items?.pagination?.has_next_page || isFetching}
-            >
-              <MdKeyboardArrowRight className="size-4" />
-            </button>
-          </nav>
-        </div>
-      </div>
-      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 h-40">
-        {content}
-      </div>
-    </div>
-  );
+				{/* Pagination */}
+				<nav className="flex items-center gap-1" aria-label="Pagination">
+					<button
+						type="button"
+						disabled={currentPage === 1 || isFetching}
+						className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 transition-all hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:pointer-events-none disabled:opacity-50"
+						aria-label="Previous page"
+						onClick={handlePreviousPage}
+					>
+						<MdKeyboardArrowLeft className="size-5" />
+					</button>
+
+					<span className="flex h-9 min-w-[2.5rem] items-center justify-center rounded-lg bg-blue-50 px-3 text-sm font-semibold text-blue-600 border border-blue-200">
+						{currentPage}
+					</span>
+
+					<button
+						type="button"
+						disabled={!items?.pagination?.has_next_page || isFetching}
+						className="flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white text-gray-600 transition-all hover:border-gray-300 hover:bg-gray-50 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 disabled:pointer-events-none disabled:opacity-50"
+						aria-label="Next page"
+						onClick={handleNextPage}
+					>
+						<MdKeyboardArrowRight className="size-5" />
+					</button>
+				</nav>
+			</div>
+
+			{/* Content Grid - 3 cards max */}
+			<div className="py-6">
+				<div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					{content}
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default TopAnime;

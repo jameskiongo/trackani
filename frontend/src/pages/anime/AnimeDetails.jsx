@@ -1,157 +1,152 @@
 import { CiBookmark } from "react-icons/ci";
 import { SiMyanimelist } from "react-icons/si";
+import { useParams } from "react-router-dom";
 import YouTubeEmbed from "../../components/animedetails/YoutubePlayer";
 import { useGetAnimeDetailsQuery } from "../../services";
-import { useParams } from "react-router-dom";
 
 function AnimeDetails() {
-  const { mal_id } = useParams();
-  const { data, isError, isLoading, isFetching } =
-    useGetAnimeDetailsQuery(mal_id);
-  if (isLoading || isFetching) {
-    return <p className="p-5">Loading...</p>;
-  }
+	const { mal_id } = useParams();
+	const { data, isError, isLoading, isFetching } =
+		useGetAnimeDetailsQuery(mal_id);
+	if (isLoading || isFetching) {
+		return <p className="p-5">Loading...</p>;
+	}
 
-  if (isError) {
-    return (
-      <p className="text-center text-red-500 font-bold">Something went wrong</p>
-    );
-  }
-  return (
-    <div className="w-full">
-      <div className="relative w-full h-80 ">
-        <div className="absolute inset-0 bg-gradient-to-b from-white/0  to-white/100"></div>
-        <img
-          src={data?.data?.trailer?.images?.maximum_image_url}
-          // src={data?.data?.images?.webp?.large_image_url}
-          alt={data?.data?.title_english + "banner"}
-          className="w-full h-80 object-cover object-center"
-        />
-      </div>
-      <div className="flex p-5 flex-row -mt-32">
-        <div className="w-3/12 z-50">
-          <div className="px-6">
-            <img
-              src={data?.data?.images?.webp?.large_image_url}
-              alt={data?.data?.title_english + "poster"}
-              className="h-full w-full z-50 rounded-lg"
-            />
-          </div>
-          <div className="px-6 py-4">
-            <div className="flex flex-row gap-2">
-              <button
-                type="button"
-                className="w-full py-3 gap-x-2 px-4 flex justify-center items-center size-11 text-sm font-medium rounded-lg border border-gray-300 bg-[#D9EAFD] text-white hover:bg-gray-50 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-              >
-                <CiBookmark className="size-7" color="#000" />
-              </button>
+	if (isError) {
+		return (
+			<p className="text-center text-red-500 font-bold">Something went wrong</p>
+		);
+	}
+	return (
+		<div className="w-full bg-gray-50">
+			{/* Banner Section */}
+			<div className="relative w-full h-[400px]">
+				<img
+					src={
+						data?.data?.trailer?.images?.maximum_image_url ||
+						// FIX: change the banner image
+						"https://images.unsplash.com/photo-1541560052-5e137f229371?q=80&w=2070&auto=format&fit=crop"
+					}
+					alt={data?.data?.title_english + " banner"}
+					className="w-full h-full object-cover object-center"
+				/>
+			</div>
 
-              <button
-                type="button"
-                className="w-full py-3 px-4 flex justify-center items-center size-11 text-sm font-medium rounded-lg border border-gray-300 bg-[#D9EAFD] text-white hover:bg-gray-50 focus:outline-hidden focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-              >
-                <SiMyanimelist className="size-7" color="#000" />
-              </button>
-            </div>
-          </div>
-          <div className="px-6">
-            <div className="border border-gray-300 rounded-lg p-4">
-              <div>
-                <h1 className="font-bold text-lg py-1">Premiered</h1>
-                <p className="capitalize text-xs font-medium">
-                  {data?.data?.aired.string}
-                </p>
-              </div>
-              <div className="overflow-hidden leading-none m-0">
-                <h1 className="font-bold text-lg py-1">Genres</h1>
-                {data?.data?.genres.map((genre) => (
-                  <span
-                    key={genre.mal_id}
-                    className="pr-2 text-xs capitalize font-medium"
-                  >
-                    {genre.name}
-                  </span>
-                ))}
-              </div>
-              <div>
-                <h1 className="font-bold text-lg py-1">Season</h1>
-                <p className="text-xs capitalize font-medium">
-                  {data?.data?.season}
-                </p>
-              </div>
-              <div>
-                <h1 className="font-bold text-lg py-1">Rating</h1>
-                <p className="text-xs capitalize font-medium">
-                  {data?.data?.rating}
-                </p>
-              </div>
-              <div>
-                <h1 className="font-bold text-lg py-1">Studio</h1>
-                <p className="text-xs capitalize font-medium">
-                  {data?.data?.studios[0]?.name}
-                </p>
-              </div>
-              <div>
-                <h1 className="font-bold text-lg py-1">Source Material</h1>
-                <p className="text-xs capitalize font-medium">
-                  {data?.data?.source}
-                </p>
-              </div>
-              <div>
-                <h1 className="font-bold text-lg py-1">English Title</h1>
-                <p className="text-xs capitalize font-medium">
-                  {data?.data?.title_english}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-9/12 z-50 flex mt-32 ">
-          <div className="w-full p-6 rounded-lg">
-            <div className="flex flex-row justify-between">
-              <h1 className="font-bold text-2xl">{data?.data?.title}</h1>
-            </div>
-            <div className="py-2">
-              <div className="inline-flex rounded-lg shadow-2xs">
-                <button
-                  type="button"
-                  className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg bg-[#D9EAFD] text-sm font-medium focus:z-10 border border-gray-300  text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  {data?.data?.type || "N/A"}
-                </button>
-                <button
-                  type="button"
-                  className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm bg-[#D9EAFD] font-medium focus:z-10 border border-gray-300 text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  {data?.data?.episodes || "N/A"} Ep
-                </button>
+			<div className="max-w-7xl mx-auto px-6">
+				<div className="flex flex-col lg:flex-row gap-10 -mt-32 relative z-20">
+					{/* LEFT SIDEBAR */}
+					<div className="lg:w-1/4 w-full">
+						<div className="bg-white shadow-xl rounded-2xl overflow-hidden">
+							<img
+								src={data?.data?.images?.webp?.large_image_url}
+								alt={data?.data?.title_english + " poster"}
+								className="w-full object-cover"
+							/>
 
-                <button
-                  type="button"
-                  className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium bg-[#D9EAFD] focus:z-10 border border-gray-300 text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  {data?.data?.year || "N/A"}
-                </button>
-                <button
-                  type="button"
-                  className="py-3 px-4 inline-flex items-center gap-x-2 -ms-px first:rounded-s-lg first:ms-0 last:rounded-e-lg text-sm font-medium bg-[#D9EAFD] focus:z-10 border border-gray-300 text-gray-800 shadow-2xs hover:bg-gray-50 focus:outline-hidden focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                >
-                  {data?.data?.score || "N/A"}
-                </button>
-              </div>
-            </div>
-            <div className="py-2">
-              <h2 className="font-bold text-xl">Synopsis</h2>
-              <p>{data?.data?.synopsis}</p>
-            </div>
-            <div className="w-full py-2">
-              <YouTubeEmbed videoId={data?.data?.trailer?.youtube_id} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+							{/* Action Buttons */}
+							<div className="flex gap-3 p-4">
+								<button className="flex-1 flex justify-center items-center py-3 rounded-xl bg-blue-100 hover:bg-blue-200 transition">
+									<CiBookmark className="size-6 text-gray-800" />
+								</button>
+								<button className="flex-1 flex justify-center items-center py-3 rounded-xl bg-blue-100 hover:bg-blue-200 transition">
+									<SiMyanimelist className="size-6 text-gray-800" />
+								</button>
+							</div>
+
+							{/* Info Section */}
+							<div className="border-t p-5 space-y-4 text-sm">
+								<div>
+									<h3 className="font-semibold text-gray-900">Premiered</h3>
+									<p className="text-gray-600">{data?.data?.aired.string}</p>
+								</div>
+
+								<div>
+									<h3 className="font-semibold text-gray-900">Genres</h3>
+									<div className="flex flex-wrap gap-2 mt-1">
+										{data?.data?.genres.map((genre) => (
+											<span
+												key={genre.mal_id}
+												className="px-3 py-1 bg-gray-100 rounded-full text-xs font-medium"
+											>
+												{genre.name}
+											</span>
+										))}
+									</div>
+								</div>
+
+								<div>
+									<h3 className="font-semibold text-gray-900">Season</h3>
+									<p className="text-gray-600 capitalize">
+										{data?.data?.season}
+									</p>
+								</div>
+
+								<div>
+									<h3 className="font-semibold text-gray-900">Rating</h3>
+									<p className="text-gray-600">{data?.data?.rating}</p>
+								</div>
+
+								<div>
+									<h3 className="font-semibold text-gray-900">Studio</h3>
+									<p className="text-gray-600">
+										{data?.data?.studios[0]?.name || "N/A"}
+									</p>
+								</div>
+
+								<div>
+									<h3 className="font-semibold text-gray-900">Source</h3>
+									<p className="text-gray-600">{data?.data?.source}</p>
+								</div>
+
+								<div>
+									<h3 className="font-semibold text-gray-900">English Title</h3>
+									<p className="text-gray-600">
+										{data?.data?.title_english || "N/A"}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					{/* RIGHT CONTENT */}
+					<div className="lg:w-3/4 w-full bg-white shadow-xl rounded-2xl p-8">
+						<h1 className="text-3xl font-bold text-gray-900">
+							{data?.data?.title}
+						</h1>
+
+						{/* Meta Info */}
+						<div className="flex flex-wrap gap-3 mt-5">
+							<span className="px-4 py-2 bg-blue-100 rounded-xl text-sm font-medium">
+								{data?.data?.type || "N/A"}
+							</span>
+							<span className="px-4 py-2 bg-blue-100 rounded-xl text-sm font-medium">
+								{data?.data?.episodes || "N/A"} Ep
+							</span>
+							<span className="px-4 py-2 bg-blue-100 rounded-xl text-sm font-medium">
+								{data?.data?.year || "N/A"}
+							</span>
+							<span className="px-4 py-2 bg-blue-100 rounded-xl text-sm font-medium">
+								⭐ {data?.data?.score || "N/A"}
+							</span>
+						</div>
+
+						{/* Synopsis */}
+						<div className="mt-8">
+							<h2 className="text-xl font-semibold mb-3">Synopsis</h2>
+							<p className="text-gray-700 leading-relaxed">
+								{data?.data?.synopsis}
+							</p>
+						</div>
+
+						{/* Trailer */}
+						<div className="mt-8">
+							<YouTubeEmbed videoId={data?.data?.trailer?.youtube_id} />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
 export default AnimeDetails;
