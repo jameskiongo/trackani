@@ -19,20 +19,17 @@ export default function GenresPage() {
   const [selectedType, setSelectedType] = useState<string | null>(null);
   const [selectedRating, setSelectedRating] = useState<string | null>(null);
 
-  // Fetch genres
   const { data: genresData, isLoading: isGenresLoading } = useSWR(
     "/api/genres",
     fetcher,
   );
 
-  // Build genre options
   const genreOptions: GenreOption[] =
     genresData?.data?.map((genre: any) => ({
       value: genre.mal_id,
       label: genre.name,
     })) || [];
 
-  // Build query string
   const buildQueryString = () => {
     const params = new URLSearchParams();
     if (selectedGenres.length > 0) {
@@ -46,14 +43,19 @@ export default function GenresPage() {
 
   const queryString = buildQueryString();
 
-  // Fetch filtered anime
   const endpoint = queryString
     ? `/api/filtered-anime?${queryString}`
     : "/api/filtered-anime";
-  const { data, error, isLoading } = useSWR<AnimeResponse>(endpoint, fetcher, {
-    revalidateOnFocus: false,
-    keepPreviousData: true,
-  });
+
+  const { data, error, isLoading } = useSWR<AnimeResponse>(
+    // queryString ? `/api/filtered-anime?${queryString}` : null,
+    endpoint,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      keepPreviousData: true,
+    },
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,7 +64,11 @@ export default function GenresPage() {
   let content: ReactNode;
 
   if (isLoading) {
-    content = <p>Loading...</p>;
+    content = (
+      <div className="w-full bg-white min-h-screen flex items-center justify-center">
+        <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+      </div>
+    );
   } else if (error) {
     content = <p>Something went wrong</p>;
   } else if (!data?.data || data.data.length === 0) {
@@ -78,7 +84,6 @@ export default function GenresPage() {
       <div>
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Genres */}
             <div className="space-y-1.5">
               <h1 className="text-xs font-bold uppercase tracking-wide text-gray-500">
                 Genres
@@ -110,7 +115,6 @@ export default function GenresPage() {
               />
             </div>
 
-            {/* Status */}
             <div className="space-y-1.5">
               <h1 className="text-xs font-bold uppercase tracking-wide text-gray-500">
                 Status
@@ -142,7 +146,6 @@ export default function GenresPage() {
               />
             </div>
 
-            {/* Type */}
             <div className="space-y-1.5">
               <h1 className="text-xs font-bold uppercase tracking-wide text-gray-500">
                 Type
@@ -172,7 +175,6 @@ export default function GenresPage() {
               />
             </div>
 
-            {/* Rating */}
             <div className="space-y-1.5">
               <h1 className="text-xs font-bold uppercase tracking-wide text-gray-500">
                 Rating
@@ -207,7 +209,6 @@ export default function GenresPage() {
         </form>
       </div>
 
-      {/* Content Grid */}
       <div className="py-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {content}
