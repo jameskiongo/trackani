@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
-const RegistrationSchema = z
+export const RegistrationSchema = z
   .object({
     email: z.string().email("Invalid email address"),
     first_name: z.string(),
