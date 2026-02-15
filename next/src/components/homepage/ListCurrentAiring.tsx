@@ -36,7 +36,11 @@ export default function ListAnime() {
 
   let content: ReactNode;
   if (isLoading) {
-    content = <p>Loading...</p>;
+    return (
+      <div className="w-full bg-white min-h-screen flex items-center justify-center">
+        <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+      </div>
+    );
   } else if (error) {
     content = <p>Something went wrong</p>;
   } else if (!data?.data || data.data.length === 0) {
