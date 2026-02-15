@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <div>
@@ -6,13 +8,13 @@ export default function Navbar() {
           <nav className="relative mx-auto flex w-full max-w-7xl items-center justify-between px-4">
             {/* Logo */}
             <div className="flex items-center">
-              <a
+              <Link
                 href="/"
                 className="inline-block text-2xl md:text-3xl font-black uppercase tracking-widest text-gray-900 hover:text-blue-600 transition-colors font-galada"
                 aria-label="Trackani Home"
               >
                 Trackani
-              </a>
+              </Link>
             </div>
 
             {/* Search - Desktop */}

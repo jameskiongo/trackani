@@ -1,5 +1,7 @@
 import { BsCcSquare } from "react-icons/bs";
 import { CiBookmark } from "react-icons/ci";
+import { IoIosStarOutline } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function TitleDescription({ anime }) {
 	return (
