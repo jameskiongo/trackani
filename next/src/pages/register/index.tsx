@@ -1,18 +1,25 @@
 import { useFormik } from "formik";
+import toast, { Toaster } from "react-hot-toast";
 import { z } from "zod";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 
+type ApiError = {
+  type: string;
+  errors: Array<{
+    code: string;
+    detail: string;
+    attr: string | null;
+  }>;
+};
 export const RegistrationSchema = z
   .object({
     email: z.string().email("Invalid email address"),
     first_name: z.string(),
     last_name: z.string(),
-    password: z.string().min(8, "Password must be at least 8 characters"),
-    confirmPassword: z
-      .string()
-      .min(8, "Password must be at least 8 characters"),
+    password1: z.string().min(8, "Password must be at least 8 characters"),
+    password2: z.string().min(8, "Password must be at least 8 characters"),
   })
-  .refine((data) => data.password === data.confirmPassword, {
+  .refine((data) => data.password1 === data.password2, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
   });
@@ -23,16 +30,39 @@ export default function Register() {
       first_name: "",
       last_name: "",
       email: "",
-      password: "",
-      confirmPassword: "",
+      password1: "",
+      password2: "",
     },
     validationSchema: toFormikValidationSchema(RegistrationSchema),
     onSubmit: async (values) => {
       console.log(values);
+      try {
+        const res = await fetch(
+          "http://localhost:8000/api/auth/registration/",
+          {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: { "Content-Type": "application/json" },
+          },
+        );
+        if (!res.ok) {
+          const error: ApiError = await res.json();
+          toast.error(error.errors?.[0]?.detail || "Registration failed");
+          return;
+        }
+        const data = await res.json();
+        console.log(data);
+        toast.success("Registration Successful");
+      } catch (error) {
+        toast.error(
+          error instanceof Error ? error.message : "An error occured",
+        );
+      }
     },
   });
   return (
     <div>
+      <Toaster />
       <div className="w-full flex items-center justify-center ">
         <div className="mt-7  w-full max-w-xl bg-white">
           <div className="p-4 sm:p-7">
@@ -131,16 +161,16 @@ export default function Register() {
                       <input
                         type="password"
                         id="password"
-                        name="password"
+                        name="password1"
                         className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                         required
                         onChange={formik.handleChange}
-                        value={formik.values.password}
+                        value={formik.values.password1}
                         aria-describedby="password-error"
                       />
-                      {formik.touched.password && formik.errors.password ? (
+                      {formik.touched.password1 && formik.errors.password1 ? (
                         <div className="mt-1 text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
-                          {formik.errors.password}
+                          {formik.errors.password1}
                         </div>
                       ) : null}
                     </div>
@@ -156,16 +186,15 @@ export default function Register() {
                       <input
                         type="password"
                         id="confirm-password"
-                        name="confirmPassword"
+                        name="password2"
                         className="py-3 px-4 block w-full border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                         required
                         onChange={formik.handleChange}
-                        value={formik.values.confirmPassword}
+                        value={formik.values.password2}
                       />
-                      {formik.touched.confirmPassword &&
-                      formik.errors.confirmPassword ? (
+                      {formik.touched.password2 && formik.errors.password2 ? (
                         <div className="mt-1 text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">
-                          {formik.errors.confirmPassword}
+                          {formik.errors.password2}
                         </div>
                       ) : null}
                     </div>
